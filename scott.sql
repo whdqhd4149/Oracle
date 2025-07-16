@@ -88,3 +88,56 @@ SELECT empno, ename, comm FROM emp WHERE comm = NULL;
 --교재 53p
 SELECT empno, ename, comm FROM emp WHERE comm IS NULL;
 SELECT empno, ename, comm FROM emp WHERE comm IS NOT NULL;
+--교재 54p
+SELECT ename, hiredate, sal FROM emp WHERE hiredate > '82/01/01' AND sal >= 1300;
+SELECT ename, hiredate, sal FROM emp WHERE hiredate > '82/01/01' OR sal >=1300;
+
+SELECT empno, ename, sal, comm FROM emp WHERE sal > 1000 AND (comm < 1000 OR comm IS NULL);
+SELECT empno, ename, sal, comm FROM emp WHERE sal > 1000 AND comm < 1000 OR COMM IS NULL;
+
+--교재 55p
+SELECT empno, ename, sal FROM emp WHERE empno = &empno;
+SELECT empno, ename, sal FROM emp WHERE empno = &empno;
+--교재 56p
+SELECT empno, ename FROM &table WHERE sal = 3000;
+--교재 57p
+SELECT ename, sal, hiredate FROM emp;
+SELECT ename, sal, hiredate FROM emp ORDER BY ename;
+--교재 58p
+SELECT deptno, sal, ename FROM emp ORDER BY deptno ASC, sal DESC;
+SELECT ename, sal, hiredate FROM emp WHERE sal > 1000 ORDER BY 2,1;
+--교재 60p
+SELECT studno, name, deptno1, 1 FROM student WHERE deptno1 = 101 
+UNION ALL
+SELECT profno, name, deptno, 2 FROM professor WHERE deptno = 101;
+--교재 61p
+SELECT studno, name, deptno1, 1 FROM STUDENT WHERE DEPTNO1 = 101
+UNION
+SELECT PROFNO, NAME, DEPTNO, 2 FROM PROFESSOR WHERE DEPTNO =101;
+
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO1 = 101
+UNION
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO2 = 201;
+
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO1 = 101
+UNION ALL
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO2 = 201;
+
+--교재 63P
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO1 = 101
+INTERSECT
+SELECT STUDNO, NAME FROM STUDENT WHERE DEPTNO2 = 201;
+
+SELECT EMPNO, ENAME, SAL FROM EMP 
+MINUS
+SELECT EMPNO, ENAME, SAL FROM EMP WHERE SAL > 2500;
+
+--교재 64P  // SELECT 뒤에 컬럼이나 데이터 형이 같아야함.
+SELECT STUDNO, NAME FROM STUDENT
+UNION
+SELECT PROFNO FROM PROFESSOR;
+
+SELECT STUDNO, NAME FROM STUDENT
+UNION
+SELECT NAME, PROFNO FROM PROFESSOR;
+
